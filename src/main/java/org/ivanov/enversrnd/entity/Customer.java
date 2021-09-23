@@ -23,7 +23,7 @@ import java.util.Objects;
 @Getter
 @Setter
 //@Audited
-@Table(name = "CUSTOMER")
+@Table(name = "CUSTOMERS")
 @Entity
 public class Customer {
     @Id

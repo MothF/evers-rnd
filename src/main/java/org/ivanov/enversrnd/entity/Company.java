@@ -16,7 +16,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Table(name = "COMPANY")
+@Table(name = "COMPANIES")
 @Entity
 public class Company {
     @Id
@@ -25,7 +25,9 @@ public class Company {
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "company",
-            cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @Column(name = "NAME", nullable = false)
+    private String name;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Customer> customers;
 }
