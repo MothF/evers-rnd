@@ -1,0 +1,61 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'java'
+}
+
+group = "org.ivanov"
+version = "0.1.0-SNAPSHOT"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly.extendsFrom(annotationProcessor)
+}
+
+ext {
+    versions = [
+            springBoot: '2.5.4',
+            lombok    : '1.18.20'
+    ]
+}
+
+dependencies {
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:${versions.springBoot}"))
+
+    annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${versions.springBoot}"
+    implementation 'org.hibernate:hibernate-envers'
+    implementation 'org.hibernate:hibernate-core'
+
+    runtimeOnly 'org.postgresql:postgresql'
+
+    compileOnly "org.projectlombok:lombok:${versions.lombok}"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${versions.springBoot}"
+}
+
+tasks.withType(JavaCompile) {
+    dependsOn tasks.withType(Copy)
+}
+
+tasks.getByName('jar') {
+    archiveClassifier = objects.property(String).value('')
+}
+
+tasks.getByName('bootJar') {
+    archiveClassifier = objects.property(String).value('boot')
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
