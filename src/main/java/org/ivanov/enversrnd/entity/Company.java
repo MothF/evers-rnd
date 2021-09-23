@@ -2,10 +2,13 @@ package org.ivanov.enversrnd.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,6 +19,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Audited
 @Table(name = "COMPANIES")
 @Entity
 public class Company {
@@ -28,6 +32,6 @@ public class Company {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Customer> customers;
 }

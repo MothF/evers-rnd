@@ -2,7 +2,7 @@ package org.ivanov.enversrnd.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.Hibernate;
+import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.AttributeOverride;
@@ -17,12 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.util.Objects;
-
 
 @Getter
 @Setter
-//@Audited
+@Audited
 @Table(name = "CUSTOMERS")
 @Entity
 public class Customer {
@@ -42,9 +40,7 @@ public class Customer {
     })
     private Address address;
 
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "COMPANY_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Company company;
-
 }

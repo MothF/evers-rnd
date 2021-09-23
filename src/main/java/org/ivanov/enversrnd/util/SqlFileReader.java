@@ -16,7 +16,7 @@ public class SqlFileReader {
 
     @SneakyThrows
     public String readQuery(String fileName) {
-        return String.join("", Files.readAllLines(resourcePath(fileName), StandardCharsets.UTF_8));
+        return String.join("\n", Files.readAllLines(resourcePath(fileName), StandardCharsets.UTF_8));
     }
 
     @SneakyThrows

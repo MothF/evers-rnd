@@ -1,4 +1,9 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/2021/09/23-01-changelog.xml
-
+      file: db/changelog/2021/09/initial-entities.changelog.xml
+  - include:
+      file: db/changelog/2021/09/revision-entity.changelog.xml
+  - include:
+      file: db/changelog/audit/customer-audit.changelog.xml
+  - include:
+      file: db/changelog/audit/company-audit.changelog.xml
